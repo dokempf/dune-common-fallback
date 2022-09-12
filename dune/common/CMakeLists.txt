@@ -19,7 +19,6 @@ dune_add_library("dunecommon"
   stdthread.cc)
 
 add_dune_blas_lapack_flags(dunecommon)
-add_dune_tbb_flags(dunecommon)
 
 #install headers
 install(FILES
