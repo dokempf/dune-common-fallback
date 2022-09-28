@@ -170,7 +170,7 @@ namespace Dune {
      */
     template <class T>
     T get(const std::string& key) const {
-      if(not hasKey(key))
+      if(!hasKey(key))
         DUNE_THROW(Dune::RangeError, "Key '" << key
           << "' not found in ParameterTree (prefix " + prefix_ + ")");
       try {
@@ -239,7 +239,7 @@ namespace Dune {
       Value dummy;
       s >> dummy;
       // now extraction should have failed, and eof should be set
-      if(not s.fail() or not s.eof())
+      if(!s.fail() || !s.eof())
         DUNE_THROW(RangeError, "as a range of "
           << n << " items of type "
           << className<Value>() << " (more items than the range can hold)");
