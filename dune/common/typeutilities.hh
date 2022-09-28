@@ -16,34 +16,6 @@ namespace Dune {
    * \author Carsten Gräser
    */
 
-
-  namespace Impl
-  {
-
-    template<class This, class... T>
-    struct disableCopyMoveHelper : public std::is_base_of<This, std::tuple_element_t<0, std::tuple<std::decay_t<T>...>>>
-    {};
-
-    template<class This>
-    struct disableCopyMoveHelper<This> : public std::false_type
-    {};
-
-  } // namespace Impl
-
-
-  /**
-   * \brief Helper to disable constructor as copy and move constructor
-   *
-   * \ingroup TypeUtilities
-   *
-   * Helper typedef to remove constructor with forwarding reference from
-   * overload set for copy and move constructor or assignment.
-   */
-  template<class This, class... T>
-  using disableCopyMove = std::enable_if_t< not Impl::disableCopyMoveHelper<This, T...>::value, int>;
-
-
-
   /**
    * \brief Helper class for tagging priorities.
    *
