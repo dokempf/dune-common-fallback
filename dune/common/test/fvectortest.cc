@@ -535,39 +535,6 @@ void fieldvectorMathclassifiersTest() {
 
   fv_nan[2] = nan;
   fv_inf[2] = inf;
-
-  //test vector containing only doubles
-  if(Dune::isNaN(fv_normal) == true) {
-    std::abort();
-  }
-  if(Dune::isInf(fv_normal) == true) {
-     std::abort();
-  }
-  if(Dune::isFinite(fv_normal) == false) {
-    std::abort();
-  }
-
-  //test vector containing a NaN-entry
-  if(Dune::isNaN(fv_nan) == false) {
-     std::abort();
-  }
-  if(Dune::isInf(fv_nan) == true) {
-     std::abort();
-  }
-  if(Dune::isFinite(fv_nan) == true) {
-    std::abort();
-  }
-
-  //test vector containing an infinity-entry
-  if(Dune::isNaN(fv_inf) == true) {
-    std::abort();
-  }
-  if(Dune::isInf(fv_inf) == false) {
-    std::abort();
-  }
-  if(Dune::isFinite(fv_inf) == true) {
-    std::abort();
-  }
 }
 
 
