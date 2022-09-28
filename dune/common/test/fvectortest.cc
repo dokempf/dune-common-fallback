@@ -14,8 +14,6 @@
 #include <dune/common/classname.hh>
 #include <dune/common/exceptions.hh>
 #include <dune/common/fvector.hh>
-#include <dune/common/gmpfield.hh>
-#include <dune/common/quadmath.hh>
 #include <dune/common/typetraits.hh>
 
 struct FVectorTestException : Dune::Exception {};
@@ -584,33 +582,6 @@ int main()
     FieldVectorTest<float, 3>();
     FieldVectorTest<double, 3>();
     FieldVectorTest<long double, 3>();
-#if HAVE_GMP
-    {
-      // we skip the complex test and the int test, as these will be very hard to implement with GMPField
-      typedef Dune::GMPField<128u> ft;
-      FieldVectorMainTest<ft,ft,3>();
-      FieldVectorMainTest<ft,ft,2>();
-      FieldVectorMainTest<ft,ft,1>();
-      FieldVectorMainTest<ft,ft,0>();
-      ScalarOperatorTest<ft>();
-      ScalarOrderingTest<ft>();
-      DotProductTest<ft,3>();
-    }
-#endif // HAVE_GMP
-
-#if HAVE_QUADMATH
-    {
-      // we skip the int test, as these will be very hard to implement with Float128
-      typedef Dune::Float128 ft;
-      FieldVectorMainTest<ft,ft,3>();
-      FieldVectorMainTest<ft,ft,2>();
-      FieldVectorMainTest<ft,ft,1>();
-      FieldVectorMainTest<ft,ft,0>();
-      ScalarOperatorTest<ft>();
-      ScalarOrderingTest<ft>();
-      DotProductTest<ft,3>();
-    }
-#endif
 
     //test the mathclassifiers Dune::isNaN, Dune::isInf, Dune::isFinite
     fieldvectorMathclassifiersTest();

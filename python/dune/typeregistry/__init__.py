@@ -1,1 +1,0 @@
-from ._typeregistry import *
