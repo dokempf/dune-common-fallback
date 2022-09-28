@@ -18,7 +18,7 @@ install(FILES
         genericiterator.hh
         iteratorfacades.hh
         math.hh
-        mattvectraits.hh
+        matvectraits.hh
         parametertree.hh
         parametertreeparser.hh
         power.hh
