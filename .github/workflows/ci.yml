@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  # We run CI on pushes to the main branch
+  push:
+    branches:
+      - main
+  # and on all pull requests to the main branch
+  pull_request:
+    branches:
+      - main
+  # as well as upon manual triggers through the 'Actions' tab of the Github UI
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Testing
+    runs-on: 
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+
+    steps:
+      - name: Checking out the repository
+        uses: actions/checkout@v3
+
+      - name: make build directory
+        run: |
+          cmake -E make_directory ${{ runner.workspace }}/build
+
+      - name: Configure using cmake
+        working-directory: ${{ runner.workspace  }}/build
+        run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=${{ runner.workspace  }}/inst
+
+      - name: Build project
+        working-directory: ${{ runner.workspace }}/build
+        run: cmake --build .
+
+      - name: Build tests
+        working-directory: ${{ runner.workspace }}/build
+        run: cmake --build . --target build_tests
+
+      - name: Run tests
+        working-directory: ${{ runner.workspace }}/build
+        run: ctest
+
+      - name: Run installation
+        working-directory: ${{ runner.workspace }}/build
+        run: cmake --build . --target install
