@@ -6,17 +6,9 @@ add_subdirectory("test")
 #build the library dunecommon
 
 dune_add_library("dunecommon"
-  debugalign.cc
-  debugallocator.cc
-  exceptions.cc
-  fmatrixev.cc
-  ios_state.cc
   parametertree.cc
   parametertreeparser.cc
-  path.cc
-  simd/test.cc
-  stdstreams.cc
-  stdthread.cc)
+  )
 
 add_dune_blas_lapack_flags(dunecommon)
 
