@@ -28,15 +28,14 @@ jobs:
         uses: actions/checkout@v3
 
       - name: make build directory
-        shell: bash
         run: |
           cmake -E make_directory ${{ runner.workspace }}/build
 
       - name: Configure using cmake
-        working-directory: ${{ runner.workspace  }}/build
+        working-directory: ${{ runner.workspace }}/build
         shell: bash
         run: |
-          cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=${{ runner.workspace  }}/inst
+          cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=${{ runner.workspace }}/inst
 
       - name: Build project
         working-directory: ${{ runner.workspace }}/build
